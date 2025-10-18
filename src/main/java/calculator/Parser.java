@@ -1,5 +1,7 @@
 package calculator;
 
+import java.util.Arrays;
+
 public final class Parser {
     private Parser() {
     }
@@ -26,6 +28,19 @@ public final class Parser {
             }
         }
 
-        return new int[0];
+        return Arrays.stream(parseTarget.split(delimiter))
+                .map(String::trim)
+                .mapToInt(s -> {
+                    final int n;
+                    try {
+                        n = Integer.parseInt(s);
+                    } catch (NumberFormatException e) {
+                        throw new IllegalArgumentException("숫자가 아님: " + s);
+                    }
+                    if (n < 0) {
+                        throw new IllegalArgumentException("음수 불가: " + n);
+                    }
+                    return n;
+                }).toArray();
     }
 }
