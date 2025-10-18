@@ -7,6 +7,6 @@ public class Application {
         String rawInput = Console.readLine();
         int[] sumTarget = Parser.parseAndConvertToInts(rawInput);
         int result = StringCalculator.sum(sumTarget);
-        System.out.println("결과: " + result);
+        System.out.println("결과 : " + result);
     }
 }
