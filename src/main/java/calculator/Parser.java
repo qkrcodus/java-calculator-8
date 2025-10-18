@@ -1,6 +1,7 @@
 package calculator;
 
 import java.util.Arrays;
+import java.util.regex.Pattern;
 
 public final class Parser {
     private Parser() {
@@ -23,7 +24,7 @@ public final class Parser {
             int idx = norm.indexOf(SUFFIX_DELIMITER);
             if (idx > 0) {
                 String customDelimiter = norm.substring(PREFIX_DELIMITER.length(), idx);
-                delimiter += customDelimiter;
+                delimiter += "|" + Pattern.quote(customDelimiter);
                 parseTarget = norm.substring(idx + 1);
             }
         }
