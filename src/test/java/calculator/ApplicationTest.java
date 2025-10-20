@@ -7,6 +7,7 @@ import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+
 class ApplicationTest extends NsTest {
     @Test
     void 커스텀_구분자_사용() {
@@ -17,11 +18,21 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
-    void 예외_테스트() {
+    void 예외_테스트_음수_사용() {
         assertSimpleTest(() ->
                 assertThatThrownBy(() -> runException("-1,2,3"))
                         .isInstanceOf(IllegalArgumentException.class)
         );
+    }
+
+    @Test
+    void 예외_테스트_문자_사용() {
+        assertSimpleTest(() ->
+                assertThatThrownBy(() -> runException("a,1,2"))
+                        .isInstanceOf(IllegalArgumentException.class)
+
+        );
+
     }
 
     @Override
